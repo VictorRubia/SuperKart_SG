@@ -1,6 +1,10 @@
 class Coche {
   //Necesitamos la escena
-  constructor(scene) {
+  constructor(scene, posx, posz, colorCoche, enemigo) {
+    this.posx = posx;
+    this.posz = posz;
+    this.colorCoche = colorCoche;
+    this.enemigo = enemigo;
     this.scene = scene;
 
     //Aspecto del personaje
@@ -28,7 +32,8 @@ class Coche {
 
     this.input;
 
-    var colorCarroceria = new THREE.MeshLambertMaterial({color: 0xA52523 });
+    //0xA52523
+    var colorCarroceria = new THREE.MeshLambertMaterial({color: this.colorCoche });
 
     var carroceriaGeom = new THREE.BoxGeometry(5.2,1.3,2.5);
     carroceriaGeom.rotateY(Math.PI / 2);
@@ -97,46 +102,50 @@ class Coche {
       6000
       )
     );
-      
-      this.coche.mesh.position.x =79.59;
-      this.coche.mesh.position.z =16.88;
-      this.coche.mesh.rotation.y =-Math.PI;
-
-    scene.add(this.coche);
+      //x =190 z= 80
+      this.coche.mesh.position.x = this.posx;
+      this.coche.mesh.position.z = this.posz;
+      this.coche.mesh.rotation.y = -Math.PI;
 
     var ruedaGeom = new THREE.CylinderGeometry( 0.5, 0.5, 1, 8 );
     // ruedaGeom.rotateX(-Math.PI / 2);
     ruedaGeom.rotateZ(-Math.PI / 2);
     // var ruedaGeom = new THREE.CircleGeometry( 10, 5 );
-    var materialRueda = new THREE.MeshLambertMaterial({ color: 0x333333 });
-
-    for ( var i = 0; i < 4; i++ ) {
-      this.coche.addWheel(
-        ruedaGeom,
-        materialRueda,
-        new THREE.Vector3(
+    if(!this.enemigo){
+      var materialRueda = new THREE.MeshLambertMaterial({ color: 0x333333 });
+      console.log(this.coche);
+      scene.add(this.coche);
+      for ( var i = 0; i < 4; i++ ) {
+        this.coche.addWheel(
+          ruedaGeom,
+          materialRueda,
+          new THREE.Vector3(
             i % 2 === 0 ? -1.3 : 1.3, 
             -0.3, // Altura ruedas
             i < 2 ? 1.5 : -1.5    // Como de separadas estan las ruedas
-        ),
-        new THREE.Vector3( 0, -1, 0 ),  // Ruedas motrices
-        new THREE.Vector3( -1, 0, 0 ),
-        0.75, // Altura coche respecto a ruedas
-        0.5,
-        i < 2 ? false : true
-      );
-    }	
+            ),
+            new THREE.Vector3( 0, -1, 0 ),  // Ruedas motrices
+            new THREE.Vector3( -1, 0, 0 ),
+            0.75, // Altura coche respecto a ruedas
+            0.5,
+            i < 2 ? false : true
+            );
+      }	
+    }
+    else{
 
       this.ruedaDelante = this.fabricaRuedas();
       this.ruedaDelante.position.y = 6.5;
       this.ruedaDelante.position.x = 1.5;
-      // coche.add(this.ruedaDelante);
-  
+      
       this.ruedaAtras = this.fabricaRuedas();
       this.ruedaAtras.position.y = 6.5;
       this.ruedaAtras.position.x = -1.5;
-      // this.ruedaDelante.add(this.ruedaAtras);
-      
+      this.ruedaDelante.add(this.ruedaAtras);
+      this.coche.mesh.add(this.ruedaDelante);
+    }
+
+        
     }
 
   fabricaRuedas(){
@@ -150,6 +159,11 @@ class Coche {
 
   //Metodo que actualiza
   update() {
+
+    var velZ = this.coche.mesh.getLinearVelocity().z.toFixed(2);
+    var velX = this.coche.mesh.getLinearVelocity().x.toFixed(2);
+    
+    var velocidad = Math.sqrt(Math.pow(velZ,2) + Math.pow(velX,2));
 
     //  Controlamos motor del coche
     if ( this.input && this.coche ) {
@@ -176,6 +190,8 @@ class Coche {
         this.coche.setBrake( 2, 3 );
       } 
       else {
+        // this.coche.setBrake( 1, 2 );
+        // this.coche.setBrake( 1, 3 );
         this.coche.applyEngineForce( 0 );
       }
     }

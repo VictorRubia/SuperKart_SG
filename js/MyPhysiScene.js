@@ -18,7 +18,10 @@ class MyPhysiScene extends Physijs.Scene {
     this.setGravity(new THREE.Vector3(0, -33, 0));
 
     // El personaje principal
-    this.coche = new Coche(this);
+    this.coche = new Coche(this,159,30,0xA52523, false);
+
+    // El personaje enemigo
+    this.enemigo = new CocheEnemigo(this,159,30,0xA52523, true);
 
     // Raycaster que se usará
     this.raycaster = new THREE.Raycaster();
@@ -126,8 +129,9 @@ class MyPhysiScene extends Physijs.Scene {
     this.delta += this.clock.getDelta();
   
     this.coche.update();
+    this.enemigo.update();
     
-    // this.cameraControl.update();  
+    this.cameraControl.update();  
     
     //Actualizar los valores de puntuación y de vida
     var velZ = this.coche.coche.mesh.getLinearVelocity().z.toFixed(2);
@@ -138,8 +142,8 @@ class MyPhysiScene extends Physijs.Scene {
     this.primero.innerHTML = velocidad.toFixed(2);
     // this.primero.innerHTML = this.coche.coche.mesh.position.x.toFixed(2);
     // console.log(this.coche.coche.mesh.getLinearVelocity().x);
-    this.segundo.innerHTML = this.camera.position.x;
-    this.tercero.innerHTML = this.camera.position.z;
+    this.segundo.innerHTML = this.coche.coche.mesh.position.x;
+    this.tercero.innerHTML = this.coche.coche.mesh.position.z;
     
     
     let tacho = 0;
@@ -156,6 +160,7 @@ class MyPhysiScene extends Physijs.Scene {
       draw((velocidad*0.005), tacho, gas, (velocidad).toFixed(2), turnSignalsStates, iconsStates);
     }
     redraw();
+    TWEEN.update();
     
     
     // if (this.delta  > this.interval) {
@@ -229,6 +234,8 @@ $(function () {
         
         case 87: // forward
         scene.coche.input.power = null;
+        scene.coche.coche.setBrake( 0.5, 2 );
+        scene.coche.coche.setBrake( 0.5, 3 );
         break;
         
         case 68: // right
