@@ -5,7 +5,6 @@
 
 ## Práctica 2
 
-#
 Juego de carreras
 
 Pulse [aquí](https://victorrubia.github.io/SuperKart_SG/js) para jugar
