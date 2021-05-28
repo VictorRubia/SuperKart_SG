@@ -41,6 +41,12 @@ class Mapa {
         this.ground.receiveShadow = true;
 
         //Load background texture
+        //var path = "../imgs/";
+        //var format = '.png';
+        //var urls = [
+
+        //]
+        
         const loader = new THREE.TextureLoader();
         loader.load('../imgs/fondo.png' , function(texture)
                 {
@@ -303,17 +309,49 @@ class Mapa {
       this.geometryLine.vertices = this.spline.getPoints(100);
       var material = new THREE.LineBasicMaterial({color: 0xFF0000});
       var visibleSpline = new THREE.Line (this.geometryLine,material);
-//       visibleSpline.applyMatrix(new THREE.Matrix4().makeRotationX(Math.PI));
-      
-//       this.competidor = new Coche(scene,158,51,0x238ea5);
-//       this.animarCompetidor();
-      
-    
-//      scene.add(this.competidor);
-     scene.add(visibleSpline);
-    
-     scene.add(this.ground);
 
+			var material_muro = new THREE.MeshBasicMaterial({ color: 0xFF0000})
+
+			this.muro1 = new MurosPosicion(scene, 163.9, 17.62, 0, 1);
+
+			console.log(this.muro1);
+
+			this.muro2 = new MurosPosicion(scene, 161.9, -27.62, 0, 2);
+			
+			// this.muro3 = new MurosPosicion(scene, 114.2, -87.8, Math.PI/2, 3);
+			
+			this.muro4 = new MurosPosicion(scene, -135.2, -171.6, Math.PI/2, 4);
+			this.muro5 = new MurosPosicion(scene, -165.4, 57.4, 0, 5);
+			this.muro6 = new MurosPosicion(scene, 117.8, 147.5, Math.PI/2, 6);
+      //MUROS INVISIBLES CHECK POSICION
+//       geometry = new THREE.BoxGeometry(90, 4, 2);
+// //       geometry.applyMatrix(new THREE.Matrix4().makeTranslation(163.9, 1.5, 17.62));
+// //       geometry.applyMatrix(new THREE.Matrix4().makeRotationY(Math.PI / 2));
+//       var muro1 = new THREE.Mesh(geometry, material_muro, 0);
+// //       muro1.position.x = 66;
+// //       muro1.position.z = -131.18;
+//       this.ground.add(muro1);
+
+      //MUROS INVISIBLES CHECK POSICION
+//       geometry = new THREE.BoxGeometry(90, 4, 2);
+//       geometry.applyMatrix(new THREE.Matrix4().makeTranslation(161.9, 1.5, -27.62));
+// //       geometry.applyMatrix(new THREE.Matrix4().makeRotationY(Math.PI / 2));
+//       var muro1 = new Physijs.BoxMesh(geometry, material_muro, 0);
+// //       muro1.position.x = 66;
+// //       muro1.position.z = -131.18;
+//       this.ground.add(muro1);
+
+      //MUROS INVISIBLES CHECK POSICION
+//       geometry = new THREE.BoxGeometry(90, 4, 2);
+//       geometry.applyMatrix(new THREE.Matrix4().makeTranslation(161.9, 1.5, -27.62));
+// //       geometry.applyMatrix(new THREE.Matrix4().makeRotationY(Math.PI / 2));
+//       var muro1 = new Physijs.BoxMesh(geometry, material_muro, 0);
+// //       muro1.position.x = 66;
+// //       muro1.position.z = -131.18;
+//       this.ground.add(muro1);
+
+      
+     scene.add(this.ground);
 
     }
 
