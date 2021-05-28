@@ -22,10 +22,10 @@ class MyPhysiScene extends Physijs.Scene {
     // El personaje principal
     this.coche = new Coche(this,159,30,0xA52523, false, 0);
 
-    
-    this.enemigo = new Enemigos(this,159,50,0x00FF00, true, 1.02, 1);
-    this.enemigo2 = new Enemigos(this,159,50,0x0000FF, true, 1.04, 2);
-    this.enemigo3 = new Enemigos(this,159,50,0xFFFF00, true, 0.91, 3);
+    getRandomArbitrary(0.91, 1.04)
+    this.enemigo = new Enemigos(this,159,50,0x00FF00, true,     getRandomArbitrary(0.91, 1.07), 1);
+    this.enemigo2 = new Enemigos(this,159,50,0x0000FF, true,     getRandomArbitrary(0.91, 1.07), 2);
+    this.enemigo3 = new Enemigos(this,159,50,0xFFFF00, true,     getRandomArbitrary(0.91, 1.07), 3);
     
     this.enemigos = [this.enemigo, this.enemigo2, this.enemigo3]; 
 
@@ -178,12 +178,16 @@ class MyPhysiScene extends Physijs.Scene {
     // console.log(this.coche.coche.mesh.getLinearVelocity().x);
     this.segundo.innerHTML = this.coche.coche.mesh.position.x;
     this.tercero.innerHTML = this.coche.coche.mesh.position.z;
-    this.cuarto.innerHTML = this.coche.seccion;
+    this.cuarto.innerHTML = this.coche.numsecciones;
     this.quinto.innerHTML = this.enemigos[0].numsecciones;
-    this.sexto.innerHTML = this.coche.distancia;
-    this.septimo.innerHTML = this.enemigos[0].distancia;
+    this.sexto.innerHTML = this.enemigos[1].numsecciones;
+    this.septimo.innerHTML = this.enemigos[2].numsecciones;
     this.octavo.innerHTML = this.posiciones;
     this.noveno.innerHTML = this.coche.posicionCuadro;
+
+    // if(this.coche.vueltas == 2){
+    //   juegoTerminado();
+    // }
     
     
     let tacho = 0;
@@ -202,19 +206,6 @@ class MyPhysiScene extends Physijs.Scene {
     redraw();
     TWEEN.update();
     
-    
-    // if (this.delta  > this.interval) {
-    //     // The draw or time dependent code are here
-    
-    //     this.delta = this.delta % this.interval;
-    // }
-    
-    //Actualizar al prota
-    
-    // Por último, se le pide al renderer que renderice la escena que capta una determinada cámara, que nos la proporciona la propia escena.
-    // this.renderer.render(this, this.getCamera());
-    
-    // Se le pide al motor de física que actualice las figuras según sus leyes
     this.simulate();
     this.renderer.render(this, this.getCamera());
   }  
@@ -223,6 +214,12 @@ class MyPhysiScene extends Physijs.Scene {
 
 function juegoTerminado(){
   window.alert("JUEGO TERMINADO!");
+  location.reload();
+}
+
+// Retorna un número aleatorio entre min (incluido) y max (excluido)
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
 }
 
 /// La función principal
@@ -302,3 +299,5 @@ $(function () {
   scene.update();
 }
 );
+
+

@@ -47,7 +47,7 @@ class Enemigos {
         new THREE.Vector3(-158.82*this.factor,0.5,89.03*this.factor),
         new THREE.Vector3(-124.4*this.factor,0.5,82.57*this.factor),
         new THREE.Vector3(-29.75*this.factor,0.5,34.38*this.factor),
-        new THREE.Vector3(7.51*this.factor,0.5,28.55*this.factor), 	
+        new THREE.Vector3(7.51*this.factor + this.factor,0.5,28.55*this.factor+ this.factor), 	
         new THREE.Vector3(29.74*this.factor,0.5,56.14*this.factor),	
         new THREE.Vector3(70.5*this.factor,0.5,141.95*this.factor),	
         new THREE.Vector3(124.28*this.factor,0.5,160.02*this.factor),
@@ -173,7 +173,7 @@ class Enemigos {
 			var that = objeto;
 
 			var animacion2 = new TWEEN.Tween(origen2)
-			.to(destino2, 10000 * getRandomArbitrary(0.3, 1.3)) // ( 6 segundos)
+			.to(destino2, 10000 * getRandomArbitrary(0.8, 1.2)) // ( 6 segundos)
 			.easing(TWEEN.Easing.Linear.None)
 			.onUpdate(function(){
 				var posicion = spline.getPointAt(origen2.p);
@@ -186,31 +186,49 @@ class Enemigos {
           that.children[0].lookAt(posicion);
           that.__dirtyRotation = true;
 				})
-				.onComplete(function(){animacion1.start()})
+				.onComplete(function(){animacion4.start()})
 				
     
-          var origen3 = {p: 0.02}; // Desde el principio hasta la mitad del recorrido (4 segs)
-          var destino3 = {p:0.45}; 
-          var animacion3 = new TWEEN.Tween(origen3)
-          .to(destino3, 10000 * getRandomArbitrary(0.3, 1.3))
-          .easing(TWEEN.Easing.Linear.None)
-          .onUpdate(function(){
-            var posicion = spline.getPointAt(origen3.p);
-            that.position.copy(posicion);
-            that.__dirtyPosition = true;
-            var tangente = spline.getTangentAt(origen3.p);
-            posicion.add(tangente);
-            // this.meshCocheEnemigo.lookAt(posicion);
-            that.children[0].lookAt(posicion);
-            mesh.lookAt(posicion);
-            that.__dirtyRotation = true;
+        var origen3 = {p: 0.05}; // Desde el principio hasta la mitad del recorrido (4 segs)
+        var destino3 = {p:0.45}; 
+        var animacion3 = new TWEEN.Tween(origen3)
+        .to(destino3, 18000 * getRandomArbitrary(0.8, 1.2))
+        .easing(TWEEN.Easing.Linear.None)
+        .onUpdate(function(){
+          var posicion = spline.getPointAt(origen3.p);
+          that.position.copy(posicion);
+          that.__dirtyPosition = true;
+          var tangente = spline.getTangentAt(origen3.p);
+          posicion.add(tangente);
+          // this.meshCocheEnemigo.lookAt(posicion);
+          that.children[0].lookAt(posicion);
+          mesh.lookAt(posicion);
+          that.__dirtyRotation = true;
         })
         .onComplete(function(){animacion2.start()}) // BUCLE INFINITO
+
+        var origen4 = {p: 0.0}; // Desde el principio hasta la mitad del recorrido (4 segs)
+        var destino4 = {p:0.05}; 
+        var animacion4 = new TWEEN.Tween(origen4)
+        .to(destino4, 2000 * getRandomArbitrary(0.8, 1.2))
+        .easing(TWEEN.Easing.Linear.None)
+        .onUpdate(function(){
+          var posicion = spline.getPointAt(origen4.p);
+          that.position.copy(posicion);
+          that.__dirtyPosition = true;
+          var tangente = spline.getTangentAt(origen4.p);
+          posicion.add(tangente);
+          // this.meshCocheEnemigo.lookAt(posicion);
+          that.children[0].lookAt(posicion);
+          mesh.lookAt(posicion);
+          that.__dirtyRotation = true;
+        })
+        .onComplete(function(){animacion3.start()}) // BUCLE INFINITO
 				
 				var origen1 = {p: 0.0}; // Desde el principio hasta la mitad del recorrido (4 segs)
-				var destino1 = {p:0.02}; 
+				var destino1 = {p:0.05}; 
 				var animacion1 = new TWEEN.Tween(origen1)
-				.to(destino1, 2000 * getRandomArbitrary(0.3, 1.3))
+				.to(destino1, 4500 * getRandomArbitrary(0.8, 1.2))
         .easing(TWEEN.Easing.Linear.None)
         .onUpdate(function(){
           var posicion = spline.getPointAt(origen1.p);

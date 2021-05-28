@@ -211,6 +211,10 @@ class Coche {
       }
     }
 
+    if(this.vueltas == 1){
+      if (!alert('Juego finalizado')) { window.location.reload(); }
+    }
+
     //  Limitamos la velocidad
     // if(this.coche.mesh.getLinearVelocity().x > 20){
     //   this.coche.mesh.setLinearVelocity({x: 20, y: this.coche.mesh.getLinearVelocity().y, z:this.coche.mesh.getLinearVelocity().z});

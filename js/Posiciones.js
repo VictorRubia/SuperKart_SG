@@ -33,37 +33,40 @@ function calcularDistancia(scene){
             scene.enemigos[i].distancia = distancia2;
             scene.enemigos[i].seccion = 0;
         }
+
+        if(scene.coche.seccion == 0){
+            distancia = Math.sqrt(Math.pow((posicionMiCoche.z - scene.mapa.muro1.physiMesh.position.z), 2));
+            scene.coche.distancia = distancia;
+        }
+        
+        if(scene.coche.seccion == 1){
+            distancia = Math.sqrt(Math.pow((posicionMiCoche.z - scene.mapa.muro2.physiMesh.position.z), 2));
+            scene.coche.distancia = distancia;
+        }
+        
+        if(scene.coche.seccion == 2){
+            distancia = Math.sqrt(Math.pow((posicionMiCoche.x - scene.mapa.muro4.physiMesh.position.x), 2));
+            scene.coche.distancia = distancia;
+        }
+        
+        if(scene.coche.seccion == 3){
+            distancia = Math.sqrt(Math.pow((posicionMiCoche.z - scene.mapa.muro5.physiMesh.position.z), 2));
+            scene.coche.distancia = distancia;
+        }
+        
+        if(scene.coche.seccion == 4){
+            distancia = Math.sqrt(Math.pow((posicionMiCoche.x - scene.mapa.muro6.physiMesh.position.x), 2));
+            scene.coche.distancia = distancia;
+        }
+        if(scene.coche.seccion == 5){
+            distancia = Math.sqrt(Math.pow((posicionMiCoche.z - scene.mapa.muro1.physiMesh.position.z), 2));
+            scene.coche.distancia = distancia;
+            scene.coche.seccion = 0;
+        }
+
     }
 
-    if(scene.coche.seccion == 0){
-        distancia = Math.sqrt(Math.pow((posicionMiCoche.z - scene.mapa.muro1.physiMesh.position.z), 2));
-        scene.coche.distancia = distancia;
-    }
-    
-    if(scene.coche.seccion == 1){
-        distancia = Math.sqrt(Math.pow((posicionMiCoche.z - scene.mapa.muro2.physiMesh.position.z), 2));
-        scene.coche.distancia = distancia;
-    }
-    
-    if(scene.coche.seccion == 2){
-        distancia = Math.sqrt(Math.pow((posicionMiCoche.x - scene.mapa.muro4.physiMesh.position.x), 2));
-        scene.coche.distancia = distancia;
-    }
-    
-    if(scene.coche.seccion == 3){
-        distancia = Math.sqrt(Math.pow((posicionMiCoche.z - scene.mapa.muro5.physiMesh.position.z), 2));
-        scene.coche.distancia = distancia;
-    }
-    
-    if(scene.coche.seccion == 4){
-        distancia = Math.sqrt(Math.pow((posicionMiCoche.x - scene.mapa.muro6.physiMesh.position.x), 2));
-        scene.coche.distancia = distancia;
-    }
-    if(scene.coche.seccion == 5){
-        distancia = Math.sqrt(Math.pow((posicionMiCoche.z - scene.mapa.muro1.physiMesh.position.z), 2));
-        scene.coche.distancia = distancia;
-        scene.coche.seccion = 0;
-    }
+
 
     calcularPosicion(scene);
 }
