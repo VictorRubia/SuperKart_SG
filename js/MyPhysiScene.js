@@ -117,9 +117,11 @@ class MyPhysiScene extends Physijs.Scene {
 
 
     var relativeCameraOffset = new THREE.Vector3(0,25,-25);
+    this.coche.coche.mesh.updateMatrixWorld();
     var cameraOffset = relativeCameraOffset.applyMatrix4(this.coche.coche.mesh.matrixWorld);
     this.camera.position.z = cameraOffset.z;
     this.camera.position.x = cameraOffset.x;
+    
     // this.camera.position.y = cameraOffset.y;
     this.camera.lookAt(this.coche.coche.mesh.position);
     
@@ -211,7 +213,6 @@ $(function () {
   window.addEventListener("resize", () => scene.onWindowResize());
 
   document.getElementById("ayuda").addEventListener("click", function() {
-    console.log(scene.coche.coche);
     scene.coche.coche.mesh.__dirtyRotation = true;
     scene.coche.coche.mesh.__dirtyPosition = true;
     scene.coche.coche.mesh.rotation['x'] = 0;

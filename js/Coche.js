@@ -172,10 +172,10 @@ class Coche {
   //Metodo que actualiza
   update() {
 
-    // var velZ = this.coche.mesh.getLinearVelocity().z.toFixed(2);
-    // var velX = this.coche.mesh.getLinearVelocity().x.toFixed(2);
+    var velZ = this.coche.mesh.getLinearVelocity().z.toFixed(2);
+    var velX = this.coche.mesh.getLinearVelocity().x.toFixed(2);
     
-    // var velocidad = Math.sqrt(Math.pow(velZ,2) + Math.pow(velX,2));
+    var velocidad = Math.sqrt(Math.pow(velZ,2) + Math.pow(velX,2));
 
     //  Controlamos motor del coche
     if ( this.input && this.coche ) {
@@ -222,18 +222,18 @@ class Coche {
     }
 
     //  Limitamos la velocidad
-    // if(this.coche.mesh.getLinearVelocity().x > 20){
-    //   this.coche.mesh.setLinearVelocity({x: 20, y: this.coche.mesh.getLinearVelocity().y, z:this.coche.mesh.getLinearVelocity().z});
-    // }
-    // else if(this.coche.mesh.getLinearVelocity().z > 20){
-    //   this.coche.mesh.setLinearVelocity({x: this.coche.mesh.getLinearVelocity().x , y: this.coche.mesh.getLinearVelocity().y, z:20});
-    // }
-    // else if(this.coche.mesh.getLinearVelocity().x < -20){
-    //   this.coche.mesh.setLinearVelocity({x: -20, y: this.coche.mesh.getLinearVelocity().y, z:this.coche.mesh.getLinearVelocity().z});
-    // }
-    // else if(this.coche.mesh.getLinearVelocity().z < -20){
-    //   this.coche.mesh.setLinearVelocity({x: this.coche.mesh.getLinearVelocity().x , y: this.coche.mesh.getLinearVelocity().y, z:-20});
-    // }
+    if(this.coche.mesh.getLinearVelocity().x > 50){
+      this.coche.mesh.setLinearVelocity({x: 50, y: this.coche.mesh.getLinearVelocity().y, z:this.coche.mesh.getLinearVelocity().z});
+    }
+    else if(this.coche.mesh.getLinearVelocity().z > 50){
+      this.coche.mesh.setLinearVelocity({x: this.coche.mesh.getLinearVelocity().x , y: this.coche.mesh.getLinearVelocity().y, z:50});
+    }
+    else if(this.coche.mesh.getLinearVelocity().x < -50){
+      this.coche.mesh.setLinearVelocity({x: -50, y: this.coche.mesh.getLinearVelocity().y, z:this.coche.mesh.getLinearVelocity().z});
+    }
+    else if(this.coche.mesh.getLinearVelocity().z < -50){
+      this.coche.mesh.setLinearVelocity({x: this.coche.mesh.getLinearVelocity().x , y: this.coche.mesh.getLinearVelocity().y, z:-50});
+    }
 
     //  rotacion sucia a 0
     // modulo de vel lineal x y z es velocidad
