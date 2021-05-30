@@ -31,6 +31,8 @@ class MyPhysiScene extends Physijs.Scene {
     
     this.enemigos = [this.enemigo, this.enemigo2, this.enemigo3]; 
 
+    // this.moneda = new Moneda(this, 123,123,1);
+
     // Raycaster que se usará
     this.raycaster = new THREE.Raycaster();
 
@@ -117,7 +119,7 @@ class MyPhysiScene extends Physijs.Scene {
 
 
     var relativeCameraOffset = new THREE.Vector3(0,25,-25);
-    this.coche.coche.mesh.updateMatrixWorld();
+    this.coche.coche.mesh.updateMatrixWorld();  // Para que la cámara no tiemble
     var cameraOffset = relativeCameraOffset.applyMatrix4(this.coche.coche.mesh.matrixWorld);
     this.camera.position.z = cameraOffset.z;
     this.camera.position.x = cameraOffset.x;

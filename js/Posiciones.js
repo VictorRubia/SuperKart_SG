@@ -233,7 +233,7 @@ function calcularPosicion(scene){
     html.push('</li>');
     html.push('</ol>');
     html.push('</div>');
-    html.push('<h3 style="text-align: center;"><a href=".">Volver a jugar</a></h3>');
+    html.push('<h3 style="text-align: center;padding-left: 10%"><a href=".">Volver a jugar</a></h3>');
     html.push('</div>');
     var target = document.getElementById('tabla');
     target.innerHTML = html.join('');
