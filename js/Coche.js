@@ -12,6 +12,8 @@ class Coche {
     this.numsecciones = 0;
     this.posicionCuadro=0;
 
+    this.prueba = true;
+
     //Aspecto del personaje
     this.createCoche(scene);
 
@@ -170,10 +172,10 @@ class Coche {
   //Metodo que actualiza
   update() {
 
-    var velZ = this.coche.mesh.getLinearVelocity().z.toFixed(2);
-    var velX = this.coche.mesh.getLinearVelocity().x.toFixed(2);
+    // var velZ = this.coche.mesh.getLinearVelocity().z.toFixed(2);
+    // var velX = this.coche.mesh.getLinearVelocity().x.toFixed(2);
     
-    var velocidad = Math.sqrt(Math.pow(velZ,2) + Math.pow(velX,2));
+    // var velocidad = Math.sqrt(Math.pow(velZ,2) + Math.pow(velX,2));
 
     //  Controlamos motor del coche
     if ( this.input && this.coche ) {
@@ -206,8 +208,17 @@ class Coche {
       }
     }
 
-    if(this.vueltas == 1){
-      if (!alert('Juego finalizado')) { window.location.reload(); }
+    
+    if(this.vueltas == 2){
+
+      var target = document.getElementById('tabla');
+      target.style.display = 'block';
+
+      if(this.prueba){
+        this.scene.finalizado = false;
+        console.log("JUEGO FINALIZADO");
+      }
+      
     }
 
     //  Limitamos la velocidad

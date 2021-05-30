@@ -14,6 +14,7 @@ class Enemigos {
       this.scene = scene;
       this.posicionCuadro=0;
       this.spline;
+      this.prueba = true;
 
       // 17 posiciones
       this.setNumeros = [0.91, 0.92, 0.93, 0.94, 0.95, 0.96, 0.97, 0.98, 0.99, 1, 1.01, 1.02, 1.03, 1.04, 1.05, 1.06, 1.07];
@@ -54,7 +55,7 @@ class Enemigos {
           new THREE.Vector3(-36.07*this.setNumeros[getRandom()],0.5,39.05*this.setNumeros[getRandom()]*1.4),
           new THREE.Vector3(-29.75,0.5,34.38*this.setNumeros[getRandom()]),
           new THREE.Vector3(7.51*this.setNumeros[getRandom()],0.5,28.55*this.setNumeros[getRandom()]), 	
-          new THREE.Vector3(29.74*this.setNumeros[getRandom()],0.5,56.14*this.setNumeros[getRandom()] ),	
+          new THREE.Vector3(29.74*this.setNumeros[getRandom()],0.5,56.14 ),	
           new THREE.Vector3(70.5,0.5,141.95*this.setNumeros[getRandom()]),	
           new THREE.Vector3(124.28,0.5,160.02),
           new THREE.Vector3(168.47,0.5,130.49),
@@ -69,6 +70,7 @@ class Enemigos {
           new THREE.Vector3(166.9*this.setNumeros[getRandom()],0.5,17.62),	
           new THREE.Vector3(158.7 *this.setNumeros[getRandom()],0.5,-45.21*this.setNumeros[getRandom()]),
           new THREE.Vector3(133.75*this.setNumeros[getRandom()],0.5,-59.21*this.setNumeros[getRandom()]),
+          new THREE.Vector3(29.3*this.setNumeros[getRandom()],0.5,-104.34*this.setNumeros[getRandom()]),
           new THREE.Vector3(-69.33*this.setNumeros[getRandom()],0.5,-161.38*this.setNumeros[getRandom()]),
           new THREE.Vector3(-140.75*this.setNumeros[getRandom()],0.5,-172.27*this.setNumeros[getRandom()]),	
           new THREE.Vector3(-168.88*this.setNumeros[getRandom()],0.5,-127.26*this.setNumeros[getRandom()]),
@@ -78,6 +80,7 @@ class Enemigos {
           new THREE.Vector3(-83.17*this.setNumeros[getRandom()],0.5,51.44*this.setNumeros[getRandom()]),
           new THREE.Vector3(-36.07*this.setNumeros[getRandom()],0.5,39.05*this.setNumeros[getRandom()]),
           new THREE.Vector3(-29.75,0.5,34.38),
+          new THREE.Vector3(-8.17,0.5,17.46),
           new THREE.Vector3(7.51*this.setNumeros[getRandom()] ,0.5,28.55*this.setNumeros[getRandom()]), 	
           new THREE.Vector3(29.74*this.setNumeros[getRandom()] ,0.5,56.14*this.setNumeros[getRandom()]),	
           new THREE.Vector3(70.5*this.setNumeros[getRandom()],0.5,141.95*this.setNumeros[getRandom()]),	
@@ -94,6 +97,7 @@ class Enemigos {
           new THREE.Vector3(166.9*this.setNumeros[getRandom()],0.5,17.62*this.setNumeros[getRandom()]),	
           new THREE.Vector3(158.7 *this.setNumeros[getRandom()],0.5,-45.21*this.setNumeros[getRandom()]),
           new THREE.Vector3(133.75*this.setNumeros[getRandom()],0.5,-59.21*this.setNumeros[getRandom()]),
+          new THREE.Vector3(46.37*this.setNumeros[getRandom()],0.5,-92.21*this.setNumeros[getRandom()]),
           new THREE.Vector3(-69.33*this.setNumeros[getRandom()],0.5,-161.38*this.setNumeros[getRandom()]),
           new THREE.Vector3(-140.75*this.setNumeros[getRandom()],0.5,-172.27*this.setNumeros[getRandom()]),	
           new THREE.Vector3(-168.88*this.setNumeros[getRandom()],0.5,-127.26*this.setNumeros[getRandom()]),
@@ -230,7 +234,7 @@ class Enemigos {
 			var that = objeto;
 
 			var animacion2 = new TWEEN.Tween(origen2)
-			.to(destino2, 20000 * getRandomArbitrary(0.8, 1.2)) // ( 6 segundos)
+			.to(destino2, 16000 * getRandomArbitrary(0.8, 1.2)) // ( 6 segundos)
 			.easing(TWEEN.Easing.Linear.None)
 			.onUpdate(function(){
 				var posicion = spline.getPointAt(origen2.p);
@@ -267,7 +271,7 @@ class Enemigos {
         var origen4 = {p: 0.0}; // Desde el principio hasta la mitad del recorrido (4 segs)
         var destino4 = {p:0.02}; 
         var animacion4 = new TWEEN.Tween(origen4)
-        .to(destino4, 2000)
+        .to(destino4, 1000)
         .easing(TWEEN.Easing.Linear.None)
         .onUpdate(function(){
           var posicion = spline.getPointAt(origen4.p);
@@ -298,6 +302,7 @@ class Enemigos {
 					mesh.lookAt(posicion);
           that.__dirtyRotation = true;
 			})
+      .delay(4000)
 			.onComplete(function(){animacion3.start()}) // BUCLE INFINITO
 			.start();
 	}
@@ -320,6 +325,23 @@ class Enemigos {
 			this.box_container.rotation['z'] = 0;
 			this.box_container.rotation['y'] = 0;
 			this.box_container.__dirtyRotation = true;
+
+      if(this.vueltas == 2 && this.posicionCuadro == 3){
+
+        var target = document.getElementById('tabla');
+        target.style.display = 'block';
+  
+        if(this.prueba){
+          this.scene.finalizado = false;
+          console.log("JUEGO FINALIZADO");
+        }
+        
+      }
+
+      // if(this.vueltas == 2 && this.posicionCuadro == 3){
+      //   window.alert('Juego finalizado!\n Has quedado último :(');
+      // }
+
       //  Limitamos la velocidad
       // if(this.coche.mesh.getLinearVelocity().x > 20){
       //   this.coche.mesh.setLinearVelocity({x: 20, y: this.coche.mesh.getLinearVelocity().y, z:this.coche.mesh.getLinearVelocity().z});

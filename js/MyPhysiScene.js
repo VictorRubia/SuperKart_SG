@@ -13,6 +13,8 @@ class MyPhysiScene extends Physijs.Scene {
 
     this.posiciones;
 
+    this.finalizado = true;
+
     // Crear el visualizador, pasándole el lienzo sobre el que realizar los renderizados.
     this.renderer = this.createRenderer(myCanvas);
 
@@ -23,25 +25,11 @@ class MyPhysiScene extends Physijs.Scene {
     this.coche = new Coche(this,159,30,0xA52523, false, 0);
 
     getRandomArbitrary(0.91, 1.04)
-    this.enemigo = new Enemigos(this,159,50,0x00FF00, true,     getRandomArbitrary(0.91, 1.07), 1);
-    this.enemigo2 = new Enemigos(this,159,50,0x0000FF, true,     getRandomArbitrary(0.91, 1.07), 2);
-    this.enemigo3 = new Enemigos(this,159,50,0xFFFF00, true,     getRandomArbitrary(0.91, 1.07), 3);
+    this.enemigo = new Enemigos(this,171.65,39.19,0x00FF00, true,getRandomArbitrary(0.91, 1.07), 1);
+    this.enemigo2 = new Enemigos(this,159.37,48.83,0x0000FF, true,getRandomArbitrary(0.91, 1.07), 2);
+    this.enemigo3 = new Enemigos(this,171.97,58.19,0xFFFF00, true,getRandomArbitrary(0.91, 1.07), 3);
     
     this.enemigos = [this.enemigo, this.enemigo2, this.enemigo3]; 
-
-    let arrayCopy = [4, 2 , 3, 1, 5];
-
-    arrayCopy.sort(function(a,b){
-      return b - a;
-      }
-    );
-
-    console.log(arrayCopy[0]);
-    console.log(arrayCopy[1]);
-    console.log(arrayCopy[2]);
-    console.log(arrayCopy[3]);
-    console.log(arrayCopy[4]);
-
 
     // Raycaster que se usará
     this.raycaster = new THREE.Raycaster();
@@ -54,7 +42,6 @@ class MyPhysiScene extends Physijs.Scene {
 
     // Creamos el mapa 
     this.mapa = new Mapa(this);
-
 
     //Los elementos del html que vamos a ir modificando
     this.primero = document.getElementById('1');
@@ -152,7 +139,8 @@ class MyPhysiScene extends Physijs.Scene {
     // La propia función render es la que indica que quiere ejecutarse la proxima vez
     // Por tanto, esta instrucción es la que hace posible que la función  render  se ejecute continuamente y por tanto podamos crear imágenes que tengan en cuenta los cambios que se la hayan hecho a la escena después de un render.
     
-    requestAnimationFrame(() => this.update());
+    if(this.finalizado) // Finalizamos el juego
+      requestAnimationFrame(() => this.update());
     this.delta += this.clock.getDelta();
   
     this.coche.update();
@@ -183,12 +171,7 @@ class MyPhysiScene extends Physijs.Scene {
     this.sexto.innerHTML = this.enemigos[1].numsecciones;
     this.septimo.innerHTML = this.enemigos[2].numsecciones;
     this.octavo.innerHTML = this.posiciones;
-    this.noveno.innerHTML = this.coche.posicionCuadro;
-
-    // if(this.coche.vueltas == 2){
-    //   juegoTerminado();
-    // }
-    
+    this.noveno.innerHTML = this.coche.posicionCuadro;  
     
     let tacho = 0;
     let gas = 0;
@@ -212,11 +195,6 @@ class MyPhysiScene extends Physijs.Scene {
 
 }
 
-function juegoTerminado(){
-  window.alert("JUEGO TERMINADO!");
-  location.reload();
-}
-
 // Retorna un número aleatorio entre min (incluido) y max (excluido)
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
@@ -227,6 +205,7 @@ $(function () {
 
   // Se crea la escena
   var scene = new MyPhysiScene("#WebGL-output");
+
   // listeners
   // Cada vez que el usuario cambie el tamaño de la ventana se llama a la función que actualiza la cámara y el renderer
   window.addEventListener("resize", () => scene.onWindowResize());
@@ -243,61 +222,63 @@ $(function () {
     // scene.coche.coche.mesh.rotation['y'] = 0;
   });
   
-  window.addEventListener('keydown', function( ev ) {
-    switch ( ev.keyCode ) {
-      case 65: // left
-        scene.coche.input.direction = 1;
-        break;
-
-      case 87: // forward
-        scene.coche.input.power = true;
-        break;
-        
-        case 68: // right
-        scene.coche.input.direction = -1;
-        break;
-        
-        case 32: // brake
-        scene.coche.input.power = false;
-        break;
-        
-        case 83: // back
-        scene.coche.input.power = true;
-        scene.coche.input.rear = true;
-        break;
-      }
-    });
-    
-    window.addEventListener('keyup', function( ev ) {
+  function detectar(){
+    window.addEventListener('keydown', function( ev ) {
       switch ( ev.keyCode ) {
         case 65: // left
-        scene.coche.input.direction = null;
-        break;
-        
+          scene.coche.input.direction = 1;
+          break;
+  
         case 87: // forward
-        scene.coche.input.power = null;
-        scene.coche.coche.setBrake( 0.5, 2 );
-        scene.coche.coche.setBrake( 0.5, 3 );
-        break;
-        
-        case 68: // right
-        scene.coche.input.direction = null;
-        break;
-        
-        case 32: // brake
-        scene.coche.input.power = null;
-        break;
-        
-        case 83: // back
-        scene.coche.input.power = null;
-        scene.coche.input.rear = null;
-        break;
-    }
-  });
+          scene.coche.input.power = true;
+          break;
+          
+          case 68: // right
+          scene.coche.input.direction = -1;
+          break;
+          
+          case 32: // brake
+          scene.coche.input.power = false;
+          break;
+          
+          case 83: // back
+          scene.coche.input.power = true;
+          scene.coche.input.rear = true;
+          break;
+        }          
+      });
 
+      window.addEventListener('keyup', function( ev ) {
+        switch ( ev.keyCode ) {
+          case 65: // left
+          scene.coche.input.direction = null;
+          break;
+          
+          case 87: // forward
+          scene.coche.input.power = null;
+          scene.coche.coche.setBrake( 0.5, 2 );
+          scene.coche.coche.setBrake( 0.5, 3 );
+          break;
+          
+          case 68: // right
+          scene.coche.input.direction = null;
+          break;
+          
+          case 32: // brake
+          scene.coche.input.power = null;
+          break;
+          
+          case 83: // back
+          scene.coche.input.power = null;
+          scene.coche.input.rear = null;
+          break;
+      }
+    });
+  }
+  setTimeout(detectar, 4000);
+
+  
   // Finalmente, realizamos el primer renderizado.
   scene.update();
 }
 );
-
-

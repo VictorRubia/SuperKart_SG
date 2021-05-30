@@ -280,11 +280,11 @@ class Mapa {
         this.muro5 = new MurosPosicion(scene, -165.4, 57.4, 0, 5);
         this.muro6 = new MurosPosicion(scene, 117.8, 147.5, Math.PI/2, 6);
 
-        console.log(this.muro1);
-        console.log(this.muro2);
-        console.log(this.muro4);
-        console.log(this.muro5);
-        console.log(this.muro6);
+        // console.log(this.muro1);
+        // console.log(this.muro2);
+        // console.log(this.muro4);
+        // console.log(this.muro5);
+        // console.log(this.muro6);
 
 
       
