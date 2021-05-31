@@ -53,13 +53,13 @@ class MyPhysiScene extends Physijs.Scene {
 
     //Los elementos del html que vamos a ir modificando
     this.primero = document.getElementById('1');
-    this.segundo = document.getElementById('2');
-    this.tercero = document.getElementById('3');
-    this.cuarto = document.getElementById('4');
-    this.quinto = document.getElementById('5');
-    this.sexto = document.getElementById('6');
-    this.septimo = document.getElementById('7');
-    this.octavo = document.getElementById('8');
+    // this.segundo = document.getElementById('2');
+    // this.tercero = document.getElementById('3');
+    // this.cuarto = document.getElementById('4');
+    // this.quinto = document.getElementById('5');
+    // this.sexto = document.getElementById('6');
+    // this.septimo = document.getElementById('7');
+    // this.octavo = document.getElementById('8');
     this.noveno = document.getElementById('9');
 
     var clock = new THREE.Clock();
@@ -179,20 +179,22 @@ class MyPhysiScene extends Physijs.Scene {
     
     var velocidad = Math.sqrt(Math.pow(velZ,2) + Math.pow(velX,2));
     if(this.coche.vueltas == -1)
-      this.primero.innerHTML = 0;
+      this.primero.innerHTML = 1;
+    else if(this.coche.vueltas == 2)
+      this.primero.innerHTML = 2;
     else
-      this.primero.innerHTML = this.coche.vueltas;
+      this.primero.innerHTML = this.coche.vueltas+1;
 
       calcularDistancia(this);
     // this.primero.innerHTML = this.coche.coche.mesh.position.x.toFixed(2);
     // console.log(this.coche.coche.mesh.getLinearVelocity().x);
-    this.segundo.innerHTML = this.coche.coche.mesh.position.x;
-    this.tercero.innerHTML = this.coche.coche.mesh.position.z;
-    this.cuarto.innerHTML = this.coche.numsecciones;
-    this.quinto.innerHTML = this.enemigos[0].numsecciones;
-    this.sexto.innerHTML = this.enemigos[1].numsecciones;
-    this.septimo.innerHTML = this.enemigos[2].numsecciones;
-    this.octavo.innerHTML = this.posiciones;
+    // this.segundo.innerHTML = this.coche.coche.mesh.position.x;
+    // this.tercero.innerHTML = this.coche.coche.mesh.position.z;
+    // this.cuarto.innerHTML = this.coche.numsecciones;
+    // this.quinto.innerHTML = this.enemigos[0].numsecciones;
+    // this.sexto.innerHTML = this.enemigos[1].numsecciones;
+    // this.septimo.innerHTML = this.enemigos[2].numsecciones;
+    // this.octavo.innerHTML = this.posiciones;
     this.noveno.innerHTML = this.coche.posicionCuadro;  
     
     let tacho = 0;

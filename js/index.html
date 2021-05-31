@@ -7,7 +7,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--     <script type="text/javascript" src="../libs/three.min.js"></script> -->
+    <meta name="referrer" content="strict-origin" />
+
     <!-- Se usa la version de three que viene con physijs -->
     <link rel="stylesheet" href="styles.css">
     <script type="text/javascript" src="./physijs/three.min.js"></script>
@@ -30,7 +31,9 @@
     <script type="text/javascript" src="Posiciones.js"></script>
     <script type="text/javascript" src="MyPhysiScene.js"></script>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <!-- <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"> -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/e50d05f645.js" crossorigin="anonymous"></script>
 
     <style>
         body {
@@ -64,21 +67,32 @@
     </div>
 
     <div style="position:absolute; left:30px; top:10px" id="izda">
-        PROGRAMACIÓN<br>
+        CONTROLES<br>
         ------------
-        <p>Vuelta <a id="1"></a></p>
+        <p>W <i class="fas fa-arrow-right"></i> ADELANTE</p>
+        <p>A <i class="fas fa-arrow-right"></i> IZQUIERDA</p>
+        <p>S <i class="fas fa-arrow-right"></i> MARCHA ATRÁS</p>
+        <p>D <i class="fas fa-arrow-right"></i> DERECHA</p>
+        <br>
+        <p>B <i class="fas fa-arrow-right"></i> FRENO DE MANO / BONUS VELOCIDAD</p>
+        <p>B <i class="fas fa-arrow-right"></i> MONEDA: BONUS VELOCIDAD</p>
+
         <!-- <p>Posicion. <a id="9"></a></p> -->
-        <p><a id="2"></a></p>
+        <!-- <p><a id="2"></a></p>
         <p><a id="3"></a></p>
         <p>Seccion: <a id="4"></a></p>
         <p>Seccion E.1: <a id="5"></a></p>
         <p>Seccion E.2: <a id="6"></a></p>
         <p>Seccion E.3: <a id="7"></a></p>
-        <p>Orden E.: <a id="8"></a></p>
+        <p>Orden E.: <a id="8"></a></p> -->
+    </div>
+
+    <div style="position:absolute; left:41%; top:10px" class="dcha">
+        <i class="fas fa-flag-checkered"></i> VUELTA <h id="1"></h> / 2<br>
+
     </div>
     
     <div style="position:absolute; right:30px; top:5px" class="dcha">
-        <i class="fas fa-crown"></i>
         Posición
         <br>  
         <br>  
@@ -92,7 +106,7 @@
 
 
     <div style="position:absolute; right:30px; bottom:10px">
-        <button id="ayuda">Restaurar</button>
+        <button id="ayuda">Restaurar <i class="fas fa-arrow-circle-left"></i></button>
         <script type="text/javascript">
         var button = document.getElementById('ayuda');
         button.onclick = function() {

@@ -116,7 +116,9 @@ class Enemigos {
         this.geometryLine = new THREE.Geometry();
         this.geometryLine.vertices = this.spline.getPoints(100);
         var material = new THREE.LineBasicMaterial({color: 0xFF0000});
-        var visibleSpline = new THREE.Line (this.geometryLine,material);
+        var material_transparent = new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.01 })
+
+        var visibleSpline = new THREE.Line (this.geometryLine,material_transparent);
 
         this.animarCompetidor(this.box_container, this.spline, this.meshCocheEnemigo);
 

@@ -33,7 +33,7 @@ class Moneda {
 				if(objeto.id == 13){
 					that.scene.remove(that.box_moneda);
 					that.scene.coche.monedas++;
-					var source = ["100", "100", "100", "100","100", "100", "100","100"];
+					var source = ["100", "100", "100", "100","100"];
 					
 					var delay = 500; // use 30000 for 30 seconds
 					
