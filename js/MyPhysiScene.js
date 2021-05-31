@@ -30,9 +30,6 @@ class MyPhysiScene extends Physijs.Scene {
     this.enemigo2 = new Enemigos(this,159.37,48.83,0x0000FF, true,getRandomArbitrary(0.91, 1.07), 2);
     this.enemigo3 = new Enemigos(this,171.97,58.19,0xFFFF00, true,getRandomArbitrary(0.91, 1.07), 3);
     
-    console.log(this.enemigo);
-    console.log(this.enemigo2);
-    console.log(this.enemigo3);
     this.enemigos = [this.enemigo, this.enemigo2, this.enemigo3]; 
 
     this.moneda2 = new Moneda(this, 31.53,-100.82,2);
@@ -107,8 +104,9 @@ class MyPhysiScene extends Physijs.Scene {
     this.camera.position.set (30, 10, 10);
 
     this.camera.lookAt(this.coche.coche.mesh.position);
-
+    
     this.cameraControl = new THREE.TrackballControls (this.camera, this.renderer.domElement);
+    this.cameraControl.noRotate = true;
   }
 
 
@@ -152,6 +150,7 @@ class MyPhysiScene extends Physijs.Scene {
     // La propia función render es la que indica que quiere ejecutarse la proxima vez
     // Por tanto, esta instrucción es la que hace posible que la función  render  se ejecute continuamente y por tanto podamos crear imágenes que tengan en cuenta los cambios que se la hayan hecho a la escena después de un render.
     
+
     if(this.finalizado) // Finalizamos el juego
       requestAnimationFrame(() => this.update());
     this.delta += this.clock.getDelta();
@@ -169,6 +168,8 @@ class MyPhysiScene extends Physijs.Scene {
     this.moneda7.update();
     this.moneda8.update();
     
+    const time = performance.now();
+
     this.cameraControl.update();  
 
     
@@ -211,6 +212,9 @@ class MyPhysiScene extends Physijs.Scene {
     TWEEN.update();
     
     this.simulate();
+
+    this.prevTime = time;
+    
     this.renderer.render(this, this.getCamera());
   }  
 
