@@ -9,6 +9,10 @@ Juego de carreras
 
 Pulse [aquí](https://victorrubia.github.io/SuperKart_SG/js) para jugar
 
+## Diagrama de Diseño
+
+![Diagrama de Clases1](https://user-images.githubusercontent.com/33348803/120187829-9f70be80-c215-11eb-8459-08fe04bb550d.jpg)
+
 
 ## Licencia
 
