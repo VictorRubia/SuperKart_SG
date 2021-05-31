@@ -14,7 +14,7 @@ class Enemigos {
       this.scene = scene;
       this.posicionCuadro=0;
       this.spline;
-      this.prueba = true;
+      this.juegoFinalizado = true;
       this.monedas = 0;
 
       // 17 posiciones
@@ -157,7 +157,7 @@ class Enemigos {
     }
   
     //Crear el aspecto del personaje
-    createCoche(scene) {
+    createCoche() {
 
 			this.meshCocheEnemigo = new THREE.Object3D();
     
@@ -369,7 +369,7 @@ class Enemigos {
         var target = document.getElementById('tabla');
         target.style.display = 'block';
   
-        if(this.prueba){
+        if(this.juegoFinalizado){
           this.scene.finalizado = false;
           console.log("JUEGO FINALIZADO");
         }

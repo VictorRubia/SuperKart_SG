@@ -14,7 +14,7 @@ class Coche {
     this.monedas = 0;
     this.extra = 0;
 
-    this.prueba = true;
+    this.juegoFinalizado = true;
 
     //Aspecto del personaje
     this.createCoche(scene);
@@ -215,7 +215,7 @@ class Coche {
       var target = document.getElementById('tabla');
       target.style.display = 'block';
 
-      if(this.prueba){
+      if(this.juegoFinalizado){
         this.scene.finalizado = false;
         console.log("JUEGO FINALIZADO");
       }

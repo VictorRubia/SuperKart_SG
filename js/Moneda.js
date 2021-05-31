@@ -73,7 +73,7 @@ class Moneda {
     }
   
     //Crear el aspecto del personaje
-    createMoneda(mesh) {
+    createMoneda() {
 
 			var that = this;
         var materialLoader = new THREE.MTLLoader();

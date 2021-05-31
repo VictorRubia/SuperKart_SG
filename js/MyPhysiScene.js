@@ -1,9 +1,5 @@
 class MyPhysiScene extends Physijs.Scene {
 
-  static clock = new THREE.Clock();
-  static delta = 0;
-  static interval = 1 / 60;
-
   constructor(myCanvas) {
     // El gestor de hebras
     Physijs.scripts.worker = './physijs/physijs_worker.js'

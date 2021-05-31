@@ -290,39 +290,6 @@ class Mapa {
 
     }
 
-animarCompetidor(){
-        var origen2 = {p:0.45}; //Desde la mitad del recorrido hasta el final
-        var destino2 = {p:1.0};
-        var that = this;
-  
-        var animacion2 = new TWEEN.Tween(origen2)
-        .to(destino2, 8000)
-        .easing(TWEEN.Easing.Quadratic.InOut)
-        .onUpdate(function(){ 
-          var posicion = that.spline.getPointAt(origen2.p);
-          that.competidor.position.copy(posicion);
-          var tangente = that.spline.getTangentAt(origen2.p);
-          posicion.add(tangente);
-          that.competidor.lookAt(posicion);
-        })
-        .onComplete(function(){animacion1.start()})
-        
-        
-        var origen1 = {p:0.0}; //Desde el principio hasta la mitad del recorrido
-        var destino1 = {p:0.45};
-        var animacion1 = new TWEEN.Tween(origen1)
-        .to(destino1, 4000)
-        .easing(TWEEN.Easing.Quadratic.InOut)
-        .onUpdate(function(){ 
-          var posicion = that.spline.getPointAt(origen1.p);
-          that.competidor.position.copy(posicion);
-          var tangente = that.spline.getTangentAt(origen1.p);
-          posicion.add(tangente);
-          that.competidor.lookAt(posicion);
-        })
-        .onComplete(function(){animacion2.start()}) //Bucle infinito
-        .start();
-    }
     
     //Funcion que crea los muros de manera aleatoria
     // createMuros(ground, material) {
