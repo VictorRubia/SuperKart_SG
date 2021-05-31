@@ -33,21 +33,18 @@ class Moneda {
 				if(objeto.id == 13){
 					that.scene.remove(that.box_moneda);
 					that.scene.coche.monedas++;
-					var source = ["100", "100", "100", "100"];
+					var source = ["100", "100", "100", "100","100", "100", "100","100"];
 					
-					var delay = 1000; // use 30000 for 30 seconds
+					var delay = 500; // use 30000 for 30 seconds
 					
 					var currentIndex = 0;
 					
 					var A = source[currentIndex]; // Starting value
-					
-					window.console.log(A); // demo
-					
+										
 					var intervalId = setInterval(function() {
 						currentIndex += 1;
 						A = source[currentIndex];
 						
-						window.console.log(A); // demo
 						that.scene.coche.coche.applyEngineForce( A );
 				
 						// Clear interval 

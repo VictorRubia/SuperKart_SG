@@ -40,18 +40,16 @@ class Mapa {
         this.ground = new Physijs.BoxMesh(geometry, physiMaterial, 0);
         this.ground.receiveShadow = true;
 
-        //Load background texture
-        //var path = "../imgs/";
-        //var format = '.png';
-        //var urls = [
+        var path = "../imgs/pisa/";
+        var format = ".png";
+        var urls = [
+                path + 'posx' + format, path + 'negx' + format,
+                path + 'posy' + format, path + 'negy' + format,
+                path + 'posz' + format, path + 'negz' + format,
+        ];
 
-        //]
-        
-        const loader = new THREE.TextureLoader();
-        loader.load('../imgs/fondo.png' , function(texture)
-                {
-                scene.background = texture;  
-                });
+        var textureCube = new THREE.CubeTextureLoader().load(urls);
+        scene.background = textureCube;
 
         var paredes = new THREE.TextureLoader().load('../imgs/images.jpg');
         paredes.wrapS = THREE.MirroredRepeatWrapping;
@@ -64,12 +62,12 @@ class Mapa {
         //Pared SUR
         geometry = new THREE.BoxGeometry(405, 30, 5);
         geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 15, 0));
-        var physiPared = new Physijs.BoxMesh(geometry, physiMaterial_paredes, 0);
+        var physiPared = new Physijs.BoxMesh(geometry, physiMaterial_transparent, 0);
         physiPared.position.z = 200;
         this.ground.add(physiPared);
 
         //Pared NORTE
-        physiPared = new Physijs.BoxMesh(geometry, physiMaterial_paredes, 0);
+        physiPared = new Physijs.BoxMesh(geometry, physiMaterial_transparent, 0);
         physiPared.position.z = -200;
         this.ground.add(physiPared);
 
@@ -78,12 +76,12 @@ class Mapa {
         var geometry1 = new THREE.BoxGeometry(405, 30, 5);
         geometry1.applyMatrix(new THREE.Matrix4().makeTranslation(0, 15, 0));
         geometry1.applyMatrix(new THREE.Matrix4().makeRotationY(Math.PI / 2));
-        physiPared = new Physijs.BoxMesh(geometry1, physiMaterial_paredes, 0);
+        physiPared = new Physijs.BoxMesh(geometry1, physiMaterial_transparent, 0);
         physiPared.position.x = 200;
         this.ground.add(physiPared);
 
         //Pared OESTE
-        physiPared = new Physijs.BoxMesh(geometry1, physiMaterial_paredes, 0);
+        physiPared = new Physijs.BoxMesh(geometry1, physiMaterial_transparent, 0);
         physiPared.position.x = -200;
         this.ground.add(physiPared);
         
