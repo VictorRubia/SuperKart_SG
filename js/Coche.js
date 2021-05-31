@@ -12,6 +12,7 @@ class Coche {
     this.numsecciones = 0;
     this.posicionCuadro = 0;
     this.monedas = 0;
+    this.extra = 0;
 
     this.prueba = true;
 
@@ -192,7 +193,7 @@ class Coche {
 
       if ( this.input.power === true ) {
         if(this.input.rear === true){
-          this.coche.applyEngineForce(-15);
+          this.coche.applyEngineForce(-15 + this.extra);
         }
         else{
           this.coche.applyEngineForce( 30 );
