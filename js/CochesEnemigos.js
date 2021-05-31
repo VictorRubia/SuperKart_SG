@@ -233,7 +233,7 @@ class Enemigos {
 			var that = objeto;
 
 			var animacion2 = new TWEEN.Tween(origen2)
-			.to(destino2, 15000 * this.setNumeros[getRandom()]) // ( 6 segundos)
+			.to(destino2, 13000 * this.setNumeros[getRandom()]) // ( 6 segundos)
 			.easing(TWEEN.Easing.Linear.None)
 			.onUpdate(function(){
 				var posicion = spline.getPointAt(origen2.p);
@@ -252,7 +252,7 @@ class Enemigos {
         var origen3 = {p: 0.02}; // Desde el principio hasta la mitad del recorrido (4 segs)
         var destino3 = {p:0.45}; 
         var animacion3 = new TWEEN.Tween(origen3)
-        .to(destino3, 16000 * this.setNumeros[getRandom()])
+        .to(destino3, 13000 * this.setNumeros[getRandom()])
         .easing(TWEEN.Easing.Linear.None)
         .onUpdate(function(){
           var posicion = spline.getPointAt(origen3.p);
@@ -272,7 +272,7 @@ class Enemigos {
 			var that = objeto;
 
 			var animacion5 = new TWEEN.Tween(origen5)
-			.to(destino5, 15000 * this.setNumeros[getRandom()]) // ( 6 segundos)
+			.to(destino5, 13000 * this.setNumeros[getRandom()]) // ( 6 segundos)
 			.easing(TWEEN.Easing.Linear.None)
 			.onUpdate(function(){
 				var posicion = spline.getPointAt(origen5.p);
@@ -291,7 +291,7 @@ class Enemigos {
         var origen6 = {p: 0.02}; // Desde el principio hasta la mitad del recorrido (4 segs)
         var destino6 = {p:0.45}; 
         var animacion6 = new TWEEN.Tween(origen6)
-        .to(destino6, 16000 * this.setNumeros[getRandom()])
+        .to(destino6, 13000 * this.setNumeros[getRandom()])
         .easing(TWEEN.Easing.Linear.None)
         .onUpdate(function(){
           var posicion = spline.getPointAt(origen6.p);
