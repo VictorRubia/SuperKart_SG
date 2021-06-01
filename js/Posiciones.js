@@ -1,7 +1,6 @@
 function calcularDistancia(scene){
     
     var posicionMiCoche = scene.coche.coche.mesh.position;
-    // console.log(posicionMiCoche);
     var distancia;
     
     for(var i = 0; i < scene.enemigos.length; i++){
@@ -66,8 +65,6 @@ function calcularDistancia(scene){
 
     }
 
-
-
     calcularPosicion(scene);
 }
 
@@ -80,9 +77,6 @@ function calcularPosicion(scene){
     for(var i= 0; i < scene.enemigos.length; i++){
         array.push(scene.enemigos[i]);
     }
-
-    
-    // scene.enemigos
 
     array.push(scene.coche);
 
@@ -102,7 +96,7 @@ function calcularPosicion(scene){
             scene.coche.posicionCuadro = i+1;
         }
         if(array[i].index == 1){
-            // console.log(scene.enemigos[1]);
+
             scene.enemigos[0].posicionCuadro = i+1;
         }
         if(array[i].index == 2){
@@ -112,42 +106,6 @@ function calcularPosicion(scene){
             scene.enemigos[2].posicionCuadro = i+1;
         }
     }
-
-    // console.log(arrayCopy);
-
-    var str = '1. Jugador '+ array[0].index.toString() + '\n2. Jugador '  + array[1].index.toString() + '\n2. Jugador '  +  array[2].index.toString() + '\n2. Jugador '  + array[3].index.toString();
-    var res1 = str.replace('Jugador -1', 'Tú');
-    var res2 = res1.replace('Jugador 1', 'Jugador verde');
-    var res3 = res2.replace('Jugador 2', 'Jugador azul');
-    var res4 = res3.replace('Jugador 3', 'Jugador amarillo');
-
-
-    // <div class="leaderboard" >
-    //     <div class="head">
-    //         <i class="fas fa-crown"></i>
-    //         <h1>RANKING</h1>
-    //     </div>
-    //     <div class="body">
-    //         <ol>
-    //             <li>
-    //                 <mark>Jerry Wood</mark>
-    //                 <small></small>
-    //             </li>
-    //             <li>
-    //                 <mark>Brandon Barnes</mark>
-    //                 <small>750</small>
-    //             </li>
-    //             <li>
-    //                 <mark>Raymond Knight</mark>
-    //                 <small>684</small>
-    //             </li>
-    //             <li>
-    //                 <mark>Trevor McCormick</mark>
-    //                 <small>335</small>
-    //             </li>
-    //         </ol>
-    //     </div>
-    // </div>
 
     var primero = array[0].index.toString();
     var primeroMonedas = array[0].monedas.toString();

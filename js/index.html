@@ -12,12 +12,12 @@
     <!-- Se usa la version de three que viene con physijs -->
     <link rel="stylesheet" href="styles.css">
     <script type="text/javascript" src="./physijs/three.min.js"></script>
+    <!-- Todo lo demás igual -->
     <script type="module" src="../libs/MTLLoader.js"></script>
     <script type="module" src="../libs/OBJLoader.js"></script>
     <script type="module" src="../libs/OrbitControls.js"></script>
     <script type="module" src="../libs/PointerLockControls.js"></script>
     <script type="text/javascript" src="./physijs/physi.js"></script>
-    <!-- Todo lo demás igual -->
     <script type="text/javascript" src="../libs/jquery.js"></script>
     <script type="text/javascript" src="../libs/Tween.js"></script>
     <script type="text/javascript" src="../libs/dat.gui.js"></script>
@@ -31,7 +31,6 @@
     <script type="text/javascript" src="Posiciones.js"></script>
     <script type="text/javascript" src="MyPhysiScene.js"></script>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-    <!-- <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"> -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/e50d05f645.js" crossorigin="anonymous"></script>
 
@@ -50,6 +49,7 @@
     <div id="WebGL-output">
     </div>
 
+    <!-- Función para hacer que desaparezca la cuenta atras tras 4900 ms -->
     <script>
         function start(){
 
@@ -59,13 +59,15 @@
             },4900);
         }
 
-            window.onload = function(){start();}
+        window.onload = function(){start();}
     </script>
 
+    <!-- GIF para la cuenta atrás de la carrera -->
     <div style="position:absolute; left:40%; top:30px;"  id="centro">
-        <img src="../imgs/ezgif.com-gif-maker.gif" style="width: 50%;" id="contador"> 
+        <img src="../imgs/contador.gif" style="width: 50%;" id="contador"> 
     </div>
 
+    <!-- Sección para indicar los controles del juego -->
     <div style="position:absolute; left:30px; top:10px" id="izda">
         <h2 style="margin-bottom: -30px;">CONTROLES</h2><br>
         <hr style="margin-bottom: 5px;">  
@@ -79,21 +81,16 @@
         <p>MONEDA<i class="fas fa-arrow-right"></i>  BONUS VELOCIDAD</p>
         <br>
         <p>RUEDA <i class="fas fa-mouse"></i> <i class="fas fa-arrow-right"></i> ZOOM</p>
-        <hr style="margin-bottom: 0px; margin-top: 5px;">        <!-- <p>Posicion. <a id="9"></a></p> -->
-        <!-- <p><a id="2"></a></p>
-        <p><a id="3"></a></p>
-        <p>Seccion: <a id="4"></a></p>
-        <p>Seccion E.1: <a id="5"></a></p>
-        <p>Seccion E.2: <a id="6"></a></p>
-        <p>Seccion E.3: <a id="7"></a></p>
-        <p>Orden E.: <a id="8"></a></p> -->
+        <hr style="margin-bottom: 0px; margin-top: 5px;">
     </div>
 
+    <!-- Sección para indicar el nº de vuelta -->
     <div style="position:absolute; left:41%; top:10px" class="dcha">
         <i class="fas fa-flag-checkered"></i> VUELTA <h id="1"></h> / 2<br>
 
     </div>
     
+    <!-- Sección para indicar la posición relativa del usuario -->
     <div style="position:absolute; right:30px; top:5px" class="dcha">
         Posición
         <br>  
@@ -102,44 +99,44 @@
         <h2 id="9" style="font-size: 2em;"></h2>
     </div>
 
-
+    <!-- Sección para el Ranking -->
 	<div id="tabla" class="container" style="width: 15%; display: none;">
 	</div>
 
-
+    <!-- Sección para restaurar la posición del coche en caso que vuelque -->
     <div style="position:absolute; right:30px; bottom:10px">
-        <button id="ayuda">Restaurar <i class="fas fa-arrow-circle-left"></i></button>
+        <button id="restaurar">Restaurar <i class="fas fa-arrow-circle-left"></i></button>
         <script type="text/javascript">
-        var button = document.getElementById('ayuda');
-        button.onclick = function() {
-        }
+            var button = document.getElementById('restaurar');
+            button.onclick = function() {
+            
+            }
         </script>
     </div>
 
+    <!-- Función que reproduce en bucle el audio -->
     <script>
         function audio() {
             if (document.getElementById("music").currentTime >= 64) {document.getElementById("music").currentTime = 6}
         }
-    </script>
+        </script>
 
+    <!-- Sección para el velocímetro -->
     <div id="speedometer">
         <div style="display: none;"><img id="sprite" src="assets/icons.svg"></div>
         <canvas id="canvas" width="425" height="210"></canvas>
     </div>
 
+
+    <!-- Introducimos la música del juego -->
     <audio autoplay id="music" ontimeupdate="audio()">
         <source src="../audio/circuito.ogg" type="audio/mp3">
     <audio>
 
+    <!-- Scripts necesarios para el velocímetro -->
     <script src="js/fraction.min.js"></script>
     <script src="js/speedometer.js"></script>
-    <script>
-
-    </script>
-
-
-        
-
+      
 </body>
 
 </html>
