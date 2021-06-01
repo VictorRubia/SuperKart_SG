@@ -11,11 +11,11 @@ Pulse [aquí](https://victorrubia.github.io/SuperKart_SG/js) para jugar
 
 ## Documentación
 
-Se puede consultar la documentación para saber cómo se juega [aquí](https://github.com/VictorRubia/SuperKart_SG/blob/main/docs/Documentaci%C3%B3n_SuperKart!.pdf)
+Se puede consultar la documentación para saber cómo se juega [aquí](https://github.com/VictorRubia/SuperKart_SG/blob/main/docs/Manual%20Usuario%20SuperKart!.pdf)
 
 ## Diseño de la aplicación
 
-Se puede consultar [aquí](https://github.com/VictorRubia/SuperKart_SG/blob/main/docs/Dise%C3%B1o_SuperKart!.pdf)
+Se puede consultar [aquí](https://github.com/VictorRubia/SuperKart_SG/blob/main/docs/Dise%C3%B1o%20SuperKart!.pdf)
 
 ## Diagrama de Diseño
 
