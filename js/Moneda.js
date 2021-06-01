@@ -46,8 +46,6 @@ class Moneda {
 						A = source[currentIndex];
 
 						that.scene.coche.extra = A;
-						
-						// that.scene.coche.coche.applyEngineForce( A );
 				
 						// Clear interval 
 						if (source.length === currentIndex + 1) {
