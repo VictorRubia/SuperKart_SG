@@ -1,12 +1,18 @@
 /**
- * Definitions for the languages.
+ * Función para calcular la distancia.
+ * 
+ * En función de la sección en la que se encuentre el vehículo, calculamos la
+ * distancia en línea recta con el delimitador de la sección siguiente.
  */
 function calcularDistancia(scene){
     
+    //  Obtenemos la posición del coche principal
     var posicionMiCoche = scene.coche.coche.mesh.position;
     var distancia;
     
+    //  Sección para los competidores
     for(var i = 0; i < scene.enemigos.length; i++){
+        //  Cargamos la posición del enemigo
         var posicionEnemigo = scene.enemigos[i].box_container.position;
         if(scene.enemigos[i].seccion == 0){
             distancia2 = Math.sqrt(Math.pow((posicionEnemigo.z - scene.mapa.muro1.physiMesh.position.z), 2));
@@ -68,13 +74,25 @@ function calcularDistancia(scene){
 
     }
 
+    //  Llamamos a la función que calcula la posición relativa 
+    //  en base a las mediciones de distancia
     calcularPosicion(scene);
 }
 
 
-
+/**
+ * Función para calcular la posición relativa.
+ * 
+ * Distinguimos 3 casos:
+ *  1º. Si el coche principal está en una sección anterior a la de los competidores --> Se le pone el último
+ *  2º. Si el coche principal está en una sección posterior a la de los competidores --> Se le pone primero
+ *  3º. Si el coche principal está en la misma sección que los competidores, se usa las distancias relativas
+ *      con la siguiente sección calculadas en la función anterior, siendo la menor de las distancias el coche
+ *      que se encuentra en primera posición
+ */
 function calcularPosicion(scene){
 
+    //  Vector que contiene a los competidores y al coche principal
     var array = [];
 
     for(var i= 0; i < scene.enemigos.length; i++){
@@ -83,17 +101,20 @@ function calcularPosicion(scene){
 
     array.push(scene.coche);
 
+    //  Ordenamos por secciones (Caso 1 y 2)
     array.sort(function(a,b){
             return (b.numsecciones - a.numsecciones);
         }
     );
 
+    //  Una vez ordenado por secciones, si se encuentran en la misma sección, se ordenan por distancia (Caso 3)
     array.sort(function(a,b){
         if(a.numsecciones == b.numsecciones)
                 return (a.distancia - b.distancia);
         }
     );
 
+    //  Actualizamos las posiciones en cada objeto
     for(var i = 0; i < array.length; i++){
         if(array[i].index == -1){
             scene.coche.posicionCuadro = i+1;
@@ -110,6 +131,7 @@ function calcularPosicion(scene){
         }
     }
 
+    // Obetenemos las posiciones
     var primero = array[0].index.toString();
     var primeroMonedas = array[0].monedas.toString();
     var segundo = array[1].index.toString();
@@ -119,6 +141,7 @@ function calcularPosicion(scene){
     var cuarto = array[3].index.toString();
     var cuartoMonedas = array[3].monedas.toString();
 
+    // Para formatear el ranking
     if(primero.includes("-1")){
         primero = primero.replace('-1', 'Tú');
     }
@@ -171,6 +194,7 @@ function calcularPosicion(scene){
         cuarto = cuarto.replace("3", "Jugador amarillo");
     }
 
+    // Formamos el ranking y lo mandamos al HTML
     var html = [];
     html.push('<div class="leaderboard" >');
     html.push('<div class="head">');

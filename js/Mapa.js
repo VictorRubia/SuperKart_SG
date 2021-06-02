@@ -1,39 +1,45 @@
+/**
+ * Clase que genera el mapa.
+ */
 class Mapa {
   constructor(scene) {
 
-    //Definir los materiales que se van a usar
+    //  Definimos la textura del circuito, una imagen y los materiales necesarios
     var texture = new THREE.TextureLoader().load('../imgs/circuito.png');
     var material = new THREE.MeshPhongMaterial({map: texture});
+    //  Material de textura del circuito
     var physiMaterial = Physijs.createMaterial(material, 1, 0.4);
     var material_transparent = new THREE.MeshBasicMaterial({color: 0x000000,transparent: true,opacity: 0.01});
     var physiMaterial_transparent = Physijs.createMaterial(material_transparent, 1, 0.1);
 
-    //Material para los muros
+    //  Material para los muros, basado en una imagen
     var muro = new THREE.TextureLoader().load('../imgs/block.png');
+    //  Repetición de la imagen a lo largo de los muros
     muro.wrapS = THREE.MirroredRepeatWrapping;
     muro.wrapT = THREE.MirroredRepeatWrapping;
     muro.repeat.set(30, 4);
     var material_muro = new THREE.MeshPhongMaterial({map: muro});
     var physiMaterial_muro = Physijs.createMaterial(material_muro, 1, 0.1);
 
-    //Material Para la bandera de la linea de meta
+    //  Material para la bandera de la linea de meta, basado en una imagen
     var bandera = new THREE.TextureLoader().load('../imgs/bandera.png');
     var meta = new THREE.MeshPhongMaterial({map: bandera});
     var physiMaterial_meta = Physijs.createMaterial(meta, 1, 0.4);
 
-    //Material para las barras de la linea de meta
+    //  Material para las barras de la linea de meta
     var material_barra = new THREE.MeshBasicMaterial({color: 0x95979b});
     var physiMaterial_barra = Physijs.createMaterial(material_barra, 1, 0.1);
 
     physiMaterial.wrapS = physiMaterial.wrapT = THREE.RepeatWrapping;
 
-    //Crear el suelo
+    //  Crear el suelo con la imagen del circuito
     var geometry = new THREE.BoxGeometry(400, 0.2, 400);
     geometry.translate(0, -0.1, 0);
     this.ground = new Physijs.BoxMesh(geometry, physiMaterial, 0);
     this.ground.receiveShadow = true;
 
-    var path = "../imgs/pisa/";
+    //  Formamos el fondo de la escena con imágenes que forman un cubo
+    var path = "../imgs/background/";
     var format = ".png";
     var urls = [
       path + 'posx' + format, path + 'negx' + format,
@@ -41,24 +47,25 @@ class Mapa {
       path + 'posz' + format, path + 'negz' + format,
     ];
 
+    //  Cargamos el fondo
     var textureCube = new THREE.CubeTextureLoader().load(urls);
     scene.background = textureCube;
 
-    //Paredes alrededor del mapa
-    //Pared SUR
+    //  PAREDES DELIMITADORES DEL MAPA
+
+    //  Pared SUR
     geometry = new THREE.BoxGeometry(405, 30, 5);
     geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 15, 0));
     var physiPared = new Physijs.BoxMesh(geometry, physiMaterial_transparent, 0);
     physiPared.position.z = 200;
     this.ground.add(physiPared);
 
-    //Pared NORTE
+    //  Pared NORTE
     physiPared = new Physijs.BoxMesh(geometry, physiMaterial_transparent, 0);
     physiPared.position.z = -200;
     this.ground.add(physiPared);
 
-
-    //Pared ESTE
+    //  Pared ESTE
     var geometry1 = new THREE.BoxGeometry(405, 30, 5);
     geometry1.applyMatrix(new THREE.Matrix4().makeTranslation(0, 15, 0));
     geometry1.applyMatrix(new THREE.Matrix4().makeRotationY(Math.PI / 2));
@@ -66,13 +73,12 @@ class Mapa {
     physiPared.position.x = 200;
     this.ground.add(physiPared);
 
-    //Pared OESTE
+    //  Pared OESTE
     physiPared = new Physijs.BoxMesh(geometry1, physiMaterial_transparent, 0);
     physiPared.position.x = -200;
     this.ground.add(physiPared);
 
-
-    //Creo los muros interiores del circuito
+    //  CREACIÓN MUROS INTERIORES
     geometry = new THREE.BoxGeometry(187, 4, 3);
     geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 1.5, 0));
     var physiMuro = new Physijs.BoxMesh(geometry, physiMaterial_muro, 0);
@@ -133,14 +139,12 @@ class Mapa {
     physiMuro.position.x = -95.5;
     this.ground.add(physiMuro);
 
-
     geometry = new THREE.BoxGeometry(40.25, 4, 3);
     geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 1.5, 0));
     var physiMuro = new Physijs.BoxMesh(geometry, physiMaterial_muro, 0);
     physiMuro.position.z = -136.5;
     physiMuro.position.x = -114.25;
     this.ground.add(physiMuro);
-
 
     geometry = new THREE.BoxGeometry(154, 4, 3);
     geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 1.5, 0));
@@ -195,7 +199,6 @@ class Mapa {
     physiMuro.position.x = -95;
     this.ground.add(physiMuro);
 
-
     //Muros que estan en las esquinas
     geometry = new THREE.BoxGeometry(187.5, 4, 3);
     geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 1.5, 0));
@@ -227,38 +230,42 @@ class Mapa {
     physiMuro.position.x = 89;
     this.ground.add(physiMuro);
 
+    //  FIN DE CREACIÓN MUROS INTERIORES
 
-    //LINEA DE META
-    //Palo izquierdo
+    //  CREACIÓN DE LINEA DE META
+    //  Palo izquierdo
     geometry = new THREE.BoxGeometry(3, 35, 1);
     geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 1.5, 0));
     geometry.applyMatrix(new THREE.Matrix4().makeRotationY(Math.PI / 2));
     var physiMeta = new Physijs.BoxMesh(geometry, physiMaterial_barra, 0);
     physiMeta.position.z = 17.5;
     physiMeta.position.x = 149.5;
+    physiMeta.castShadow = true;
     this.ground.add(physiMeta);
 
-    //Palo derecho
+    //  Palo derecho
     geometry = new THREE.BoxGeometry(3, 35, 1);
     geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 1.5, 0));
     geometry.applyMatrix(new THREE.Matrix4().makeRotationY(Math.PI / 2));
     var physiMeta = new Physijs.BoxMesh(geometry, physiMaterial_barra, 0);
     physiMeta.position.z = 17.5;
     physiMeta.position.x = 182;
+    physiMeta.castShadow = true;
     this.ground.add(physiMeta);
 
-    //Bandera de la linea de meta
+    //  Bandera de la linea de meta
     geometry = new THREE.BoxGeometry(32, 5, 3);
     geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 1.5, 0));
     var physiMeta = new Physijs.BoxMesh(geometry, physiMaterial_meta, 0);
     physiMeta.position.z = 17.5;
     physiMeta.position.x = 165.7;
     physiMeta.position.y = 15;
+    physiMeta.castShadow = true;
     this.ground.add(physiMeta);
 
-    var material_muro = new THREE.MeshBasicMaterial({
-      color: 0xFF0000
-    })
+    //  Creamos los delimitadores de sección
+    
+    var material_muro = new THREE.MeshBasicMaterial({color: 0xFF0000})
 
     this.muro1 = new MurosPosicion(scene, 163.9, 17.62, 0, 1);
     this.muro2 = new MurosPosicion(scene, 161.9, -27.62, 0, 2);

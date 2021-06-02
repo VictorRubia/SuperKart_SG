@@ -20,9 +20,9 @@ class Moneda {
 	  var containerGeometry = new THREE.BoxGeometry(5.2, 3, 3);
 	  
 	  this.box_moneda = new Physijs.BoxMesh(
-		containerGeometry,
-		new THREE.MeshBasicMaterial({wireframe: true,opacity: 0.0,transparent: true}),
-		1
+      containerGeometry,
+      new THREE.MeshBasicMaterial({wireframe: true,opacity: 0.0,transparent: true}),
+      1
 	  );
 	  
     //  Añadimos la moneda a la caja física
@@ -41,40 +41,19 @@ class Moneda {
     //  de monedas.
 	  this.box_moneda.addEventListener('collision', function(objeto, v, r, n) {
 		if(objeto.id == 13) {
-
 		  that.scene.remove(that.box_moneda);
 		  that.scene.coche.monedas++;
-		  var source = ["100", "100", "100", "100", "100", "100", "0"];
-		  
-		  var delay = 3000; // use 30000 for 30 seconds
-		  
-		  var currentIndex = 0;
-		  
-		  var A = source[currentIndex]; // Starting value
-		  
-		  var intervalId = setInterval(function() {
-        currentIndex += 1;
-        A = source[currentIndex];
-        
-        that.scene.coche.extra = A;
-        
-        // Clear interval 
-        if(source.length === currentIndex + 1) {
-          clearInterval(intervalId);
-        }
-		  }, delay);
-
+		  that.scene.coche.coche.applyEngineForce(500);
 		}
-
-		if(objeto.id == 33) { // 1
+		if(objeto.id == 32) { // Competidor 1
 		  that.scene.remove(that.box_moneda);
 		  that.scene.enemigo.monedas++;
 		}
-		if(objeto.id == 43) { //2
+		if(objeto.id == 41) { // Competidor 2
 		  that.scene.remove(that.box_moneda);
 		  that.scene.enemigo2.monedas++;
 		}
-		if(objeto.id == 53) { //2
+		if(objeto.id == 50) { // Competidor 3
 		  that.scene.remove(that.box_moneda);
 		  that.scene.enemigo2.monedas++;
 		}
@@ -82,7 +61,7 @@ class Moneda {
 	  
 	}
 	
-	//  Creamos el objeto del personaje
+	//  Creamos el objeto de la moneda
 	createMoneda() {
 	  
 	  var that = this;
@@ -105,7 +84,10 @@ class Moneda {
 	
 	//Metodo que actualiza
 	update() {
+    //  Para que rote la moneda
 	  this.meshMoneda.rotation['y'] += 0.1;
+
+    //  Para que la moneda no se desestabilice
 	  this.meshMoneda.rotation['x'] = 0;
 	  this.meshMoneda.rotation['z'] = 0;
 	  this.box_moneda.__dirtyRotation = true;
