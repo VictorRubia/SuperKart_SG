@@ -199,8 +199,8 @@ class Coche {
       //  Si la dirección no está controlada (ni se presiona A ni S)
       if (this.input.direction !== null) {
         this.input.steering += this.input.direction / 50;
-        if (this.input.steering < -.3) this.input.steering = -.3; //  Grado de giro de las ruedas
-        if (this.input.steering > .3) this.input.steering = .3;
+        if (this.input.steering < -.1) this.input.steering = -.1; //  Grado de giro de las ruedas
+        if (this.input.steering > .1) this.input.steering = .1;
       } else {
         this.input.steering *= 0.9;
       }
