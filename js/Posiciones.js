@@ -1,3 +1,6 @@
+/**
+ * Definitions for the languages.
+ */
 function calcularDistancia(scene){
     
     var posicionMiCoche = scene.coche.coche.mesh.position;

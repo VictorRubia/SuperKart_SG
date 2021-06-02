@@ -12,6 +12,8 @@ class MyPhysiScene extends Physijs.Scene {
 
     this.finalizado = true;
 
+    this.shadows = true;
+
     // Crear el visualizador, pasándole el lienzo sobre el que realizar los renderizados.
     this.renderer = this.createRenderer(myCanvas);
 
@@ -109,10 +111,33 @@ class MyPhysiScene extends Physijs.Scene {
 
   createLights() {
 
-    this.light = new THREE.AmbientLight(0xFFFFFF);
-    this.light.position.set(20, 60, -15);
+    this.light2 = new THREE.AmbientLight(0xffffff );
+    this.light2.position.set(20, 60, -15);
 
-    this.coche.coche.mesh.add(this.light);
+    this.light = new THREE.SpotLight( 0xffffff ); 
+    this.light.position.set( 200, 250, 200 );  
+    this.light.castShadow = true;  
+    this.light.shadowMapWidth = 1024; 
+    this.light.shadowMapHeight = 1024;  
+    this.light.shadowCameraNear = 250; 
+    this.light.shadowCameraFar = 750; 
+    this.light.shadowCameraFov = 500; 
+    this.light.visible=false;
+
+    // this.light2 = new THREE.SpotLight( 0xffffff ); 
+    // this.light2.position.set( 150, 0, 150 );  
+    // console.log(this.coche);
+    // this.light2.target = this.coche.coche.wheels[0];
+    // this.light2.castShadow = true;
+    // this.light2.shadowCameraFov = 20; 
+    // this.light2.shadowMapWidth = 1024; 
+    // this.light2.shadowMapHeight = 1024;  
+
+    // this.coche.coche.mesh.add(this.light2);
+
+    this.add( this.light );
+
+    this.coche.coche.mesh.add(this.light2);
 
   }
 
@@ -163,6 +188,8 @@ class MyPhysiScene extends Physijs.Scene {
 
     this.cameraControl.update();
 
+    this.light.position.set( this.coche.coche.mesh.position.x + 100, 250, this.coche.coche.mesh.position.z + 100 ); 
+    // this.light2.position.set(0, 0, 0);
 
     //Actualizar los valores de puntuación y de vida
     var velZ = this.coche.coche.mesh.getLinearVelocity().z.toFixed(2);
@@ -225,6 +252,16 @@ $(function() {
     scene.coche.coche.mesh.rotation['x'] = 0;
     scene.coche.coche.mesh.rotation['y'] = Math.PI / 2;
     scene.coche.coche.mesh.rotation['z'] = 0;
+  });
+
+  document.getElementById("shadows").addEventListener('change', function() {
+    if (this.checked) {
+      scene.light.visible=true;
+      scene.light2.color.setHex( 0x404040 );
+    } else {
+      scene.light.visible=false;
+      scene.light2.color.setHex( 0xffffff );
+    }
   });
 
   function detectar() {

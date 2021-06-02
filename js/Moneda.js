@@ -1,17 +1,22 @@
 class Moneda {
-	//Necesitamos la escena
+	// Constructor para la moneda
 	constructor(scene, posx, posz, index) {
+    //  Posiciones para colocar la moneda en el mapa
 	  this.posx = posx;
 	  this.posz = posz;
+    //  Índice que identifica a la moneda
 	  this.index = index
+    //  La escena
 	  this.scene = scene;
+    //  El objeto de la moneda
 	  this.meshMoneda = new THREE.Object3D();
 	  
 	  var that = this;
 	  
+    //  Llamamos a la función crear moneda
 	  this.createMoneda(this.meshMoneda);
 	  
-	  //Caja fisica del personaje
+	  //  Caja fisica de la moneda
 	  var containerGeometry = new THREE.BoxGeometry(5.2, 3, 3);
 	  
 	  this.box_moneda = new Physijs.BoxMesh(
@@ -20,14 +25,20 @@ class Moneda {
 		1
 	  );
 	  
+    //  Añadimos la moneda a la caja física
 	  this.box_moneda.add(this.meshMoneda);
 	  
 	  this.box_moneda.position.set(this.posx, 2, this.posz);
 	  this.box_moneda.__dirtyPosition = true;
 	  
-	  //Añadir la caja a la escena
+	  //  Añadimos la caja a la escena
 	  this.scene.add(this.box_moneda);
 	  
+    //  Establecemos que cuando se produzca un evento de tipo colisión
+    //  desaparezca la moneda y en caso de ser el jugador el que la recoge
+    //  le aplicamos un bonus de velocidad. 
+    //  Si la recoge cualquiera de los jugadores, se le suma a su contador
+    //  de monedas.
 	  this.box_moneda.addEventListener('collision', function(objeto, v, r, n) {
 		if(objeto.id == 13) {
 
@@ -42,15 +53,15 @@ class Moneda {
 		  var A = source[currentIndex]; // Starting value
 		  
 		  var intervalId = setInterval(function() {
-			currentIndex += 1;
-			A = source[currentIndex];
-			
-			that.scene.coche.extra = A;
-			
-			// Clear interval 
-			if(source.length === currentIndex + 1) {
-			  clearInterval(intervalId);
-			}
+        currentIndex += 1;
+        A = source[currentIndex];
+        
+        that.scene.coche.extra = A;
+        
+        // Clear interval 
+        if(source.length === currentIndex + 1) {
+          clearInterval(intervalId);
+        }
 		  }, delay);
 
 		}
@@ -71,34 +82,33 @@ class Moneda {
 	  
 	}
 	
-	//Crear el aspecto del personaje
+	//  Creamos el objeto del personaje
 	createMoneda() {
 	  
 	  var that = this;
 	  var materialLoader = new THREE.MTLLoader();
 	  var objectLoader = new THREE.OBJLoader();
 	  
+    //  Cargamos el material
 	  materialLoader.load('../models/Coin.mtl',
-		function(materials) {
-		  objectLoader.setMaterials(materials);
-		  objectLoader.load('../models/Coin.obj',
-			function(object) {
-			  var modelo = object;
-			  var modelo2 = object;
-			  that.meshMoneda.add(modelo);
-			}, null, null);
-		}
+      function(materials) {
+        //  Cargamos el objeto
+        objectLoader.setMaterials(materials);
+        objectLoader.load('../models/Coin.obj',
+        function(object) {
+          var modelo = object;
+          that.meshMoneda.add(modelo);
+        }, null, null);
+      }
 	  );
-	  
 	}
 	
 	//Metodo que actualiza
 	update() {
-	  
 	  this.meshMoneda.rotation['y'] += 0.1;
 	  this.meshMoneda.rotation['x'] = 0;
 	  this.meshMoneda.rotation['z'] = 0;
 	  this.box_moneda.__dirtyRotation = true;
 	  
 	}
-  }
+}

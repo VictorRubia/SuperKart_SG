@@ -266,8 +266,6 @@ class Mapa {
     this.muro5 = new MurosPosicion(scene, -165.4, 57.4, 0, 5);
     this.muro6 = new MurosPosicion(scene, 117.8, 147.5, Math.PI / 2, 6);
 
-    this.ground.receiveShadow = true;
-
     scene.add(this.ground);
 
   }

@@ -124,6 +124,8 @@ class Coche {
     this.carroceriaPhy.add(this.ventanaIzqda2);
     this.carroceriaPhy.add(this.cabina);
 
+    this.carroceriaPhy.castShadow = this.carroceriaPhy.receiveShadow = true;
+
     this.coche = new Physijs.Vehicle(this.carroceriaPhy, new Physijs.VehicleTuning(
       10, //rigidez
       1.83,  //compresion
