@@ -130,24 +130,24 @@ class Enemigos {
     this.box_container.addEventListener('collision', function(objeto, v, r, n) {
       //Si el objeto es un zombie
 
-      if (objeto.id == 95) {
+      if (objeto.id == 98) {
         that.seccion++;
         that.vueltas++;
         that.numsecciones++;
       }
-      if (objeto.id == 96) {
-        that.seccion++;
-        that.numsecciones++;
-      }
-      if (objeto.id == 97) {
-        that.seccion++;
-        that.numsecciones++;
-      }
-      if (objeto.id == 98) {
-        that.seccion++;
-        that.numsecciones++;
-      }
       if (objeto.id == 99) {
+        that.seccion++;
+        that.numsecciones++;
+      }
+      if (objeto.id == 100) {
+        that.seccion++;
+        that.numsecciones++;
+      }
+      if (objeto.id == 101) {
+        that.seccion++;
+        that.numsecciones++;
+      }
+      if (objeto.id == 102) {
         that.seccion++;
         that.numsecciones++;
         // that.seccion = 0;

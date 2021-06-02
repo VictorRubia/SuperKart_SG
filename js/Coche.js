@@ -31,27 +31,27 @@ class Coche {
 
     this.coche.mesh.addEventListener('collision', function(objeto, v, r, n) {
 
-      if (objeto.id == 95 && that.seccion == 0) {
+      if (objeto.id == 98 && that.seccion == 0) {
         that.vueltas++;
         that.seccion++;
         that.numsecciones++;
       }
 
-      if (objeto.id == 96 && that.seccion == 1) {
+      if (objeto.id == 99 && that.seccion == 1) {
         that.seccion++;
         that.numsecciones++;
 
       }
 
-      if (objeto.id == 97 && that.seccion == 2) {
+      if (objeto.id == 100 && that.seccion == 2) {
         that.seccion++;
         that.numsecciones++;
       }
-      if (objeto.id == 98 && that.seccion == 3) {
+      if (objeto.id == 101 && that.seccion == 3) {
         that.seccion++;
         that.numsecciones++;
       }
-      if (objeto.id == 99 && that.seccion == 4) {
+      if (objeto.id == 102 && that.seccion == 4) {
         that.seccion++;
         that.numsecciones++;
       }
