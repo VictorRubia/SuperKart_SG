@@ -26,7 +26,7 @@ class MurosPosicion {
         this.physiMesh = new Physijs.BoxMesh(geometry, material_transparent, 0);
 
         //  Altura de los muros
-        this.physiMesh.position.set(this.posx, -1.86, this.posz);
+        this.physiMesh.position.set(this.posx, -1.855, this.posz);
         this.physiMesh.rotation.set(0, this.rotacion, 0);
         this.physiMesh.__dirtyPosition = true;
         this.physiMesh.__dirtyRotation = true;
