@@ -22,7 +22,7 @@ class MurosPosicion {
         var material_muro = new THREE.MeshBasicMaterial({ color: 0xFF0000})
         var material_transparent = new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.01 })
 
-        var geometry = new THREE.BoxGeometry(100, 4, 8);
+        var geometry = new THREE.BoxGeometry(100, 4, 12);
         this.physiMesh = new Physijs.BoxMesh(geometry, material_transparent, 0);
 
         //  Altura de los muros
