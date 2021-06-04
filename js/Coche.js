@@ -232,7 +232,7 @@ class Coche {
 
     //  Si el número de vueltas dadas ya es dos mostramos el ranking y le indicamos a la escena prncipal
     //  que pare el renderizador
-    if (this.vueltas == 0) {
+    if (this.vueltas == 2) {
 
       var target = document.getElementById('tabla');
       target.style.display = 'block';
